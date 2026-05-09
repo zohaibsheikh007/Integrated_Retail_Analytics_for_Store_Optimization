@@ -22,23 +22,20 @@ The codebase is organized into modular pipelines executed in the following seque
            ▼                                                   ▼
 [4. Unsupervised Clustering]                       [5. Supervised Forecasting]
            │                                                   │
-           └───────────────────> [6. Operational Playbook] <───┘
-                                           ▲
-                                           │
-                              [7. Market Basket Analysis]
-
+           └───────────────────> [6. Market Basket Analysis] <───┘
+                                        
 ```
 
 ### 1. Data Preprocessing & Feature Engineering
 
-We ingest three main transactional databases—**Store Profiles**, **Historical Sales**, and **Regional Macroeconomic Indicators**—merging them on regional keys (`Store`, `Date`, `IsHoliday`):
+We ingest three main transactional databases—**Store Profiles**, **Historical Sales**, and **Regional Macroeconomic Indicators**—merging m on regional keys (`Store`, `Date`, `IsHoliday`):
 
-* **Data Hygiene Protocols:** Programmatically filters out negative target variables (representing customer returns rather than active sales) to ensure downstream model convergence. Missing markdown variables (`MD1` to `MD5`) are imputed with `0`, indicating periods without promotional campaigns.
+* **Data Hygiene Protocols:** Programmatically filters out negative target variables (representing customer returns rar than active sales) to ensure downstream model convergence. Missing markdown variables (`MD1` to `MD5`) are imputed with `0`, indicating periods without promotional campaigns.
 * **Predictive Feature Engineering:**
 * **Temporal Component Extraction:** String date signatures are programmatically parsed into distinct integer dimensions (`Year`, `Month`, `Week of Year`) to capture repeating annual trajectories.
-* **Sales Momentum Proxy:** Computes `Sales_Lag_1` (weekly sales shifted backward by one cycle) to mathematically represent immediate prior velocity.
+* **Sales Momentum Proxy:** Computes `Sales_Lag_1` (weekly sales shifted backward by one cycle) to mamatically represent immediate prior velocity.
 * **Promotional Aggregations:** Constructs `Total_MD_Value` (sum of numeric markdowns) and `MD_Count` (count of concurrent promotions).
-* **Non-Linear Weather Binning:** Bins continuous temperature measurements into localized categorical buckets (e.g., Cold, Mild, Hot) to capture non-linear demand shifts in tree-based architectures.
+* **Non-Linear Wear Binning:** Bins continuous temperature measurements into localized categorical buckets (e.g., Cold, Mild, Hot) to capture non-linear demand shifts in tree-based architectures.
 
 
 
@@ -46,7 +43,7 @@ We ingest three main transactional databases—**Store Profiles**, **Historical 
 
 * **Macroeconomic Divergence:** Highlights an inverse macroeconomic trend where a steadily rising Consumer Price Index (CPI) coexists with dropping regional unemployment, signaling price-sensitive consumers highly responsive to markdown events.
 * **Distribution Profiles:** Continuous covariates reveal distinct unimodal temperature trends, bimodal fuel prices, bimodal CPI splits, and right-skewed unemployment patterns.
-* **Target Variance Analysis:** Power rankings establish that sales are highly concentrated, where category identity (e.g., Departments 92 and 95) is statistically more critical to revenue than the physical store location.
+* **Target Variance Analysis:** Power rankings establish that sales are highly concentrated, where category identity (e.g., Departments 92 and 95) is statistically more critical to revenue than  physical store location.
 * **Outlier Isolation Pipeline:** Employs statistical Z-scores ($|Z| > 3$) to isolate anomalies. Programmatic analysis confirms these outliers map precisely to holiday periods (Easter, Thanksgiving, Christmas) and are kept to train dedicated calendar features.
 
 ### 3. Classical Statistical Baselines
@@ -78,7 +75,7 @@ To prevent "one-size-fits-all" forecasting, the pipeline scales physical, financ
 
 ---
 
-## 📈 Strategic Playbook Recommendations
+## 📈 Strategic Recommendations
 
 1. **Pillar I: Dynamic Supply & Inventory Allocations**
 * Enforce high-tier safety stocks at *Cluster 3 (Mega-Flagships)* to mitigate expensive stockout events.
@@ -101,7 +98,3 @@ To prevent "one-size-fits-all" forecasting, the pipeline scales physical, financ
 * **Zohaib Sheikh** - *Data Scientist*
 
 ---
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
